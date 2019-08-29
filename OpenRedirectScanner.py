@@ -14,7 +14,7 @@ file = open(url, "r")
 count = False
 print("[*]Running scan for possible Open Redirect vulnerable URLs...\n")
 for line in file:
-	if "url=" in line or "redirect=" in line or "next=" in line or "r=" in line or "u=" in line:
+	if "rl=" in line or "redirect=" in line or "next=" in line or "r=" in line or "u=" in line:
 		print(Fore.GREEN + line)
 		count = True
 print(Style.RESET_ALL)
@@ -38,3 +38,21 @@ if count == False:
 	print(Fore.RED + "[-]None found. This only works if file contains HTTP Status codes\n")
 print(Style.RESET_ALL)
 print("Finished Scanning")
+
+#Show examples of redirect bypass
+print("\nTry the following https://www.example.com/?redirect_to=*")
+print("""
+https://attacker.com
+target.com//attacker.com
+target.com/@attacker.com
+target.com/?image_url=attacker.com/.jpg
+127.0.0.1
+target.com/?redirect_url=target.com.attacker.com
+https://attacker%E3%80%82com
+target.com@%E2%80%AE@attacker.com
+https:attacker.com
+http:/\/\attacker.com
+https:/\attacker.com.
+.jp
+""")
+sys.exit()
